@@ -1,0 +1,198 @@
+
+.tickets-container {
+  padding: 30px;
+  background: #f4f6fa;
+  min-height: 100vh;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+
+  h1 {
+    color: #172b4d;
+    margin: 0 0 8px;
+    font-size: 28px;
+  }
+
+  p {
+    color: #6b778c;
+    margin: 0;
+  }
+}
+
+.ticket-form,
+.ticket-list {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+  h2 {
+    color: #172b4d;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 21px;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+  flex: 1;
+
+  label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #344563;
+  }
+
+  input,
+  textarea,
+  select {
+    padding: 12px;
+    border: 1px solid #dfe1e6;
+    border-radius: 6px;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+
+    &:focus {
+      border-color: #2563eb;
+    }
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover {
+    background: #1d4ed8;
+  }
+
+  &:disabled {
+    background: #a5b4fc;
+    cursor: not-allowed;
+  }
+}
+
+.ticket-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  background: #ffffff;
+}
+
+.ticket-info {
+  h3 {
+    margin: 0 0 8px;
+    color: #172b4d;
+  }
+
+  p {
+    margin: 0;
+    color: #6b778c;
+  }
+}
+
+.ticket-meta {
+  display: flex;
+  gap: 10px;
+
+  span {
+    padding: 6px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .status {
+    background: #e0ecff;
+    color: #1d4ed8;
+  }
+
+  .priority {
+    background: #fff1db;
+    color: #b45309;
+  }
+}
+
+.success-message {
+  color: #15803d;
+  margin-top: 15px;
+}
+
+.error-message {
+  color: #dc2626;
+  margin-top: 15px;
+}
+
+.empty-state {
+  color: #6b778c;
+  text-align: center;
+  padding: 25px;
+}
+
+@media (max-width: 650px) {
+  .tickets-container {
+    padding: 15px;
+  }
+
+  .form-row,
+  .ticket-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ticket-meta {
+    margin-top: 15px;
+  }
+}
+
+
+.cancel-button {
+  background: #6b7280;
+  margin-left: 10px;
+
+  &:hover {
+    background: #4b5563;
+  }
+}
+
+.ticket-meta button {
+  background: #2563eb;
+  padding: 7px 14px;
+  font-size: 12px;
+
+  &:hover {
+    background: #1d4ed8;
+  }
+}
+.delete-button {
+  background: #dc2626 !important;
+  padding: 7px 14px;
+  font-size: 12px;
+
+  &:hover {
+    background: #b91c1c !important;
+  }
+}

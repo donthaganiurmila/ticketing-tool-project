@@ -1,0 +1,132 @@
+
+<div class="tickets-container">
+
+  <header class="page-header">
+    <div>
+      <h1>Ticket Management</h1>
+      <p>Create and manage your workspace tickets.</p>
+    </div>
+  </header>
+
+  <section class="ticket-form">
+    <h2>{{ editingTicketId ? 'Edit Ticket' : 'Create New Ticket' }}</h2>
+
+    <form (ngSubmit)="editingTicketId ? updateTicket() : createTicket()"
+          #ticketForm="ngForm">
+
+      <div class="form-group">
+        <label>Ticket Title</label>
+        <input
+          type="text"
+          name="title"
+          [(ngModel)]="ticket.title"
+          placeholder="Enter ticket title"
+          required />
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea
+          name="description"
+          [(ngModel)]="ticket.description"
+          placeholder="Describe the ticket"
+          rows="4">
+        </textarea>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Status</label>
+          <select name="status" [(ngModel)]="ticket.status">
+            <option value="OPEN">Open</option>
+            <option value="IN_PROGRESS">In Progress</option>
+            <option value="RESOLVED">Resolved</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Priority</label>
+          <select name="priority" [(ngModel)]="ticket.priority">
+            <option value="LOW">Low</option>
+            <option value="MEDIUM">Medium</option>
+            <option value="HIGH">High</option>
+            <option value="CRITICAL">Critical</option>
+          </select>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="ticketForm.invalid">
+        {{ editingTicketId ? 'Update Ticket' : 'Create Ticket' }}
+      </button>
+
+      <button
+        *ngIf="editingTicketId"
+        type="button"
+        class="cancel-button"
+        (click)="cancelEdit()">
+        Cancel
+      </button>
+
+    </form>
+
+    <p class="success-message" *ngIf="successMessage">
+      {{ successMessage }}
+    </p>
+
+    <p class="error-message" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+  </section>
+
+  <section class="ticket-list">
+    <h2>All Tickets</h2>
+    <div class="filter-section">
+      <input
+        type="text"
+        [(ngModel)]="searchText"
+        placeholder="Search tickets..."
+      />
+
+      <select [(ngModel)]="selectedStatus">
+        <option value="ALL">All Statuses</option>
+        <option value="OPEN">Open</option>
+        <option value="IN_PROGRESS">In Progress</option>
+        <option value="RESOLVED">Resolved</option>
+      </select>
+
+      <select [(ngModel)]="selectedPriority">
+        <option value="ALL">All Priorities</option>
+        <option value="LOW">Low</option>
+        <option value="MEDIUM">Medium</option>
+        <option value="HIGH">High</option>
+        <option value="CRITICAL">Critical</option>
+      </select>
+    </div>
+
+    <p *ngIf="loading">Loading tickets...</p>
+
+    <div class="empty-state"
+         *ngIf="!loading && tickets.length === 0">
+      No tickets available yet.
+    </div>
+
+    <div class="ticket-card" *ngFor="let item of tickets">
+
+      <div class="ticket-info">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.description }}</p>
+      </div>
+
+      <div class="ticket-meta">
+        <span class="status">{{ item.status }}</span>
+        <span class="priority">{{ item.priority }}</span>
+
+        <button type="button" (click)="editTicket(item)">
+          Edit
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+</div>

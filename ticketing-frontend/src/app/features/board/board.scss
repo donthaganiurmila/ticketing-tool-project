@@ -1,0 +1,177 @@
+
+.board-container {
+  padding: 30px;
+  background: #f4f5f7;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+.board-header {
+  margin-bottom: 30px;
+
+  h1 {
+    font-size: 28px;
+    color: #172b4d;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: #6b778c;
+    font-size: 14px;
+  }
+}
+
+// Three-column board layout
+.board-columns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+
+// Individual status column
+.board-column {
+  background: #ebecf0;
+  border-radius: 10px;
+  padding: 16px;
+  min-height: 400px;
+}
+
+// Column title and ticket count
+.column-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+
+  h2 {
+    font-size: 16px;
+    color: #172b4d;
+    margin: 0;
+  }
+
+  span {
+    background: #dfe1e6;
+    color: #42526e;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+}
+
+// Tickets inside each column
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// Individual ticket card
+.board-ticket {
+  background: white;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(9, 30, 66, 0.12);
+  border: 1px solid #dfe1e6;
+  transition: box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 4px 10px rgba(9, 30, 66, 0.18);
+  }
+
+  h3 {
+    font-size: 14px;
+    color: #172b4d;
+    margin: 0 0 10px;
+  }
+
+  p {
+    color: #6b778c;
+    font-size: 13px;
+    line-height: 1.5;
+    margin-bottom: 15px;
+  }
+}
+
+// Priority and status dropdown
+.ticket-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+
+  select {
+    padding: 6px;
+    border: 1px solid #dfe1e6;
+    border-radius: 5px;
+    font-size: 12px;
+    background: white;
+    cursor: pointer;
+  }
+}
+
+// Priority label
+.priority {
+  font-size: 11px;
+  font-weight: bold;
+  padding: 5px 9px;
+  border-radius: 5px;
+  background: #e9f2ff;
+  color: #0747a6;
+}
+
+// Loading message
+.loading-message {
+  text-align: center;
+  padding: 30px;
+  color: #42526e;
+  font-size: 14px;
+}
+
+// Error message
+.error-message {
+  background: #ffebe6;
+  color: #bf2600;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+
+  button {
+    margin-left: 12px;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+
+// Empty column message
+.ticket-list > p {
+  color: #6b778c;
+  font-size: 13px;
+  text-align: center;
+  padding: 15px 5px;
+}
+
+// Tablet and smaller screens
+@media (max-width: 900px) {
+  .board-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .board-column {
+    min-height: auto;
+  }
+}
+
+// Mobile screens
+@media (max-width: 600px) {
+  .board-container {
+    padding: 16px;
+  }
+
+  .board-header h1 {
+    font-size: 23px;
+  }
+}

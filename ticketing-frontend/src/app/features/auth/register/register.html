@@ -1,0 +1,137 @@
+
+<div class="register-container">
+
+  <div class="register-card">
+
+    <!-- Brand -->
+    <div class="brand">
+      <h1>SUMPOSITIVE</h1>
+      <p>Project & Ticket Management</p>
+    </div>
+
+    <h2>Create Account</h2>
+    <p class="subtitle">
+      Join your workspace and manage tickets efficiently.
+    </p>
+
+    <form (ngSubmit)="onRegister()" #registerForm="ngForm">
+
+      <!-- Full Name -->
+      <div class="form-group">
+        <label>Full Name</label>
+
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="name"
+          #nameField="ngModel"
+          placeholder="Enter your full name"
+          required
+        />
+
+        <small class="error-message"
+               *ngIf="nameField.touched && nameField.errors?.['required']">
+          Full name is required.
+        </small>
+      </div>
+
+      <!-- Gmail Address -->
+      <div class="form-group">
+        <label>Email Address</label>
+
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          #emailField="ngModel"
+          placeholder="Enter your Gmail address"
+          required
+          email
+          pattern="^[a-z0-9._%+-]+@gmail\.com$"
+        />
+
+        <small class="error-message"
+               *ngIf="emailField.touched && emailField.errors?.['required']">
+          Email address is required.
+        </small>
+
+        <small class="error-message"
+               *ngIf="emailField.touched && (emailField.errors?.['pattern'] || emailField.errors?.['email'])">
+          Enter a valid lowercase Gmail address ending in @gmail.com.
+        </small>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <label>Password</label>
+
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          #passwordField="ngModel"
+          placeholder="Create a password"
+          required
+          minlength="6"
+        />
+
+        <small class="error-message"
+               *ngIf="passwordField.touched && passwordField.errors?.['required']">
+          Password is required.
+        </small>
+
+        <small class="error-message"
+               *ngIf="passwordField.touched && passwordField.errors?.['minlength']">
+          Password must contain at least 6 characters.
+        </small>
+      </div>
+
+      <!-- Confirm Password -->
+      <div class="form-group">
+        <label>Confirm Password</label>
+
+        <input
+          type="password"
+          name="confirmPassword"
+          [(ngModel)]="confirmPassword"
+          #confirmPasswordField="ngModel"
+          placeholder="Confirm your password"
+          required
+        />
+
+        <small class="error-message"
+               *ngIf="confirmPasswordField.touched && confirmPasswordField.errors?.['required']">
+          Please confirm your password.
+        </small>
+
+        <small class="error-message"
+               *ngIf="confirmPasswordField.touched && confirmPassword && password !== confirmPassword">
+          Passwords do not match.
+        </small>
+      </div>
+
+      <!-- General Error Message -->
+      <p class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </p>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        [disabled]="registerForm.invalid || loading || password !== confirmPassword">
+
+        {{ loading ? 'Creating Account...' : 'Create Account' }}
+
+      </button>
+
+    </form>
+
+    <!-- Login Link -->
+    <p class="login-link">
+      Already have an account?
+      <a routerLink="/login">Sign In</a>
+    </p>
+
+  </div>
+
+</div>

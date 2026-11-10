@@ -1,0 +1,141 @@
+
+<div class="dashboard-layout">
+
+  <!-- Top Navigation -->
+  <header class="top-navbar">
+
+    <div class="brand">
+      <span class="brand-icon">✦</span>
+      <h1>SUMPOSITIVE</h1>
+    </div>
+
+    <nav class="top-navigation">
+      <a routerLink="/dashboard" routerLinkActive="active">
+        Dashboard
+      </a>
+
+      <a routerLink="/tickets" routerLinkActive="active">
+        Tickets
+      </a>
+      <a routerLink="/board" routerLinkActive="active">
+        Board
+      </a>
+    </nav>
+
+    <div class="user-profile">
+      <span>U</span>
+    </div>
+
+  </header>
+
+  <div class="dashboard-body">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+      <nav class="sidebar-navigation">
+
+        <a routerLink="/dashboard" routerLinkActive="active">
+          <span>⌂</span>
+          Dashboard
+        </a>
+
+        <a routerLink="/tickets" routerLinkActive="active">
+          <span>▣</span>
+          Tickets
+        </a>
+        <a routerLink="/board" routerLinkActive="active">
+          <span>▤</span>Board
+        </a>
+
+      </nav>
+
+      <div class="sidebar-footer">
+        Project & Ticket Management
+      </div>
+
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Welcome Banner -->
+      <section class="welcome-banner">
+
+        <div>
+          <h2>Welcome, {{ userName }}!</h2>
+          <p>Here's your ticket management overview.</p>
+        </div>
+
+        <div class="banner-decoration">
+          ✓
+        </div>
+
+      </section>
+
+      <!-- Loading -->
+      <p *ngIf="loading" class="loading-message">
+        Loading dashboard statistics...
+      </p>
+
+      <!-- Error -->
+      <p *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </p>
+
+      <!-- Statistics -->
+      <section class="statistics-grid" *ngIf="!loading">
+
+        <div class="stat-card" *ngFor="let item of statistics">
+
+          <div class="stat-icon" [style.color]="item.color">
+            ▣
+          </div>
+
+          <div class="stat-details">
+            <h2>{{ item.count }}</h2>
+            <p>{{ item.title }}</p>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- Ticket Management -->
+      <section class="ticket-management">
+
+        <div class="section-heading">
+          <span>▥</span>
+
+          <div>
+            <h2>Ticket Management</h2>
+            <p>Your ticket management dashboard is ready.</p>
+          </div>
+        </div>
+
+        <div class="management-content">
+
+          <div class="management-icon">
+            ✓
+          </div>
+
+          <h3>Manage your work efficiently</h3>
+
+          <p>
+            Create, update, track and resolve tickets
+            from one central workspace.
+          </p>
+
+          <a routerLink="/tickets" class="view-tickets">
+            View All Tickets
+          </a>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+</div>

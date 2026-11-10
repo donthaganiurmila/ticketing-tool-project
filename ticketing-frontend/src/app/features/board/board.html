@@ -1,0 +1,134 @@
+
+<div class="board-container">
+
+  <header class="board-header">
+    <div>
+      <h1>Kanban Board</h1>
+      <p>Track and manage your tickets by status.</p>
+    </div>
+  </header>
+
+  <!-- Loading Message -->
+  <div *ngIf="loading" class="loading-message">
+    Loading tickets...
+  </div>
+
+  <!-- Error Message -->
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+    <button (click)="loadTickets()">Retry</button>
+  </div>
+
+  <!-- Board Columns -->
+  <div class="board-columns" *ngIf="!loading && !errorMessage">
+
+    <!-- To Do Column -->
+    <section class="board-column">
+      <div class="column-header">
+        <h2>To Do</h2>
+        <span>{{ getTicketsByStatus('TO_DO').length }}</span>
+      </div>
+
+      <div class="ticket-list">
+
+        <p *ngIf="getTicketsByStatus('TO_DO').length === 0">
+          No tickets to do.
+        </p>
+
+        <div
+          class="board-ticket"
+          *ngFor="let ticket of getTicketsByStatus('TO_DO')">
+
+          <h3>{{ ticket.title }}</h3>
+          <p>{{ ticket.description }}</p>
+
+          <div class="ticket-footer">
+            <span class="priority">{{ ticket.priority }}</span>
+
+            <select
+              [ngModel]="ticket.status"
+              (ngModelChange)="changeStatus(ticket, $event)">
+              <option value="TO_DO">To Do</option>
+              <option value="IN_PROGRESS">In Progress</option>
+              <option value="DONE">Done</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- In Progress Column -->
+    <section class="board-column">
+      <div class="column-header">
+        <h2>In Progress</h2>
+        <span>{{ getTicketsByStatus('IN_PROGRESS').length }}</span>
+      </div>
+
+      <div class="ticket-list">
+
+        <p *ngIf="getTicketsByStatus('IN_PROGRESS').length === 0">
+          No tickets in progress.
+        </p>
+
+        <div
+          class="board-ticket"
+          *ngFor="let ticket of getTicketsByStatus('IN_PROGRESS')">
+
+          <h3>{{ ticket.title }}</h3>
+          <p>{{ ticket.description }}</p>
+
+          <div class="ticket-footer">
+            <span class="priority">{{ ticket.priority }}</span>
+
+            <select
+              [ngModel]="ticket.status"
+              (ngModelChange)="changeStatus(ticket, $event)">
+              <option value="TO_DO">To Do</option>
+              <option value="IN_PROGRESS">In Progress</option>
+              <option value="DONE">Done</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Done Column -->
+    <section class="board-column">
+      <div class="column-header">
+        <h2>Done</h2>
+        <span>{{ getTicketsByStatus('DONE').length }}</span>
+      </div>
+
+      <div class="ticket-list">
+
+        <p *ngIf="getTicketsByStatus('DONE').length === 0">
+          No completed tickets.
+        </p>
+
+        <div
+          class="board-ticket"
+          *ngFor="let ticket of getTicketsByStatus('DONE')">
+
+          <h3>{{ ticket.title }}</h3>
+          <p>{{ ticket.description }}</p>
+
+          <div class="ticket-footer">
+            <span class="priority">{{ ticket.priority }}</span>
+
+            <select
+              [ngModel]="ticket.status"
+              (ngModelChange)="changeStatus(ticket, $event)">
+              <option value="TO_DO">To Do</option>
+              <option value="IN_PROGRESS">In Progress</option>
+              <option value="DONE">Done</option>
+            </select>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
